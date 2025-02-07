@@ -48,18 +48,18 @@
                     static_cast<float>(cellWidth),
                     static_cast<float>(cellHeight)
                 };
-
+                 
 
                     if (graphXO[i] == "X") {
                         player->DrawX(col, row, cellWidth, cellHeight,playerX,playerRect);
                     }
                     if (graphXO[i] == "O") {
-                        enemy->DrawO(col, row, cellWidth, cellHeight, enemyX, playerRect);
+                        enemy->DrawO(col, row, cellWidth, cellHeight, enemyX,  playerRect);
                     }
             }
 
             if (!playerHasPlayed && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-                    Vector2 pos = GetClickPosition();
+                    Vector2 pos = GetMousePosition();
                     int col = pos.x / cellWidth;
                     int row = pos.y / cellHeight;
                     int index = row * 4 + col;
