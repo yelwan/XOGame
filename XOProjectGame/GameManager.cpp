@@ -21,15 +21,15 @@
         Texture2D enemyX = LoadTexture("../XOProjectGame/O.png");
    
         std::vector<std::string> graphXO = character->GetGraphXorO();
-   
+        const int cellWidth = (int)screenWidth / 4;
+        const int cellHeight = (int)screenHeight / 4;
         SetTargetFPS(60);
         while (!WindowShouldClose())
         {
             playerHasPlayed = aiHasPlayed = false;
             BeginDrawing();
             ClearBackground(RAYWHITE);
-            const int cellWidth = (int)screenWidth / 4;
-            const int cellHeight = (int)screenHeight / 4;
+            
 
             for (int i = 1; i < 4; i++) {
                 DrawLine(cellWidth * i, 0, cellWidth * i, screenHeight, BLACK);
