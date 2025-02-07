@@ -9,7 +9,7 @@ int main()
 
 
 	 InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
-	 gameManager->BeginGame(screenWidth, screenHeight);
+	 gameManager->BeginGameInit(screenWidth, screenHeight);
 
 
 	 CloseWindow();

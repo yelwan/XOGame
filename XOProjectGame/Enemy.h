@@ -8,18 +8,18 @@ class Enemy : public Character
 {
 public:
 	Enemy();
-	 void PlaceXOPublic(std::string XorO, Vector2 position, std::vector<std::string>& board,std::string otherXorO);
+	 void PlaceXOPublic(char XorO, Vector2 position, std::vector<char>& board,char otherXorO);
 protected:
-	Vector2 BestMove(std::vector<std::string>& board, std::string XorOEnemy, std::string XorOPlayer);
-	int MinMax(std::vector<std::string>& board, int depth, bool isMaximising, std::string XorOEnemy, std::string XorOPlayer,  int alpha, int beta);
-	void PlaceXO(std::string XorO, Vector2 position, std::vector<std::string>& board, std::string otherXorO);
+	std::pair<int,int> BestMove(std::vector<char>& board, char XorOEnemy, char XorOPlayer);
+	int MinMax(std::vector<char>& board, int depth, bool isMaximising, char XorOEnemy, char XorOPlayer,  int alpha, int beta);
+	void PlaceXO(char XorO, Vector2 position, std::vector<char>& board, char otherXorO);
 
 private:
 	int maxDepth = 4;
 	int depth,winScore,looseScore,tieScore;
-	std::unordered_map<std::string, int> memo;
-	int evaluateBoard(const std::vector<std::string>& board, const std::string& XorOEnemy, const std::string& XorOPlayer);
-	int evaluateLine(const std::vector<std::string>& board, int start, int step, const std::string& XorOEnemy, const std::string& XorOPlayer);
-
+	std::unordered_map<char, int> memo;
+	int evaluateBoard(const std::vector<char>& board, const char& XorOEnemy, const char& XorOPlayer);
+	int evaluateLine(const std::vector<char>& board, int start, int step, const char& XorOEnemy, const char& XorOPlayer);
+	Rectangle r;
 };
 

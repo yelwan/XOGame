@@ -14,16 +14,19 @@ class GameManager
 {
 public:
 	GameManager();
-	~GameManager();
-	void BeginGame(int screenWidth, int screenHeight);
-	
-	
+	void BeginGameInit(int screenWidth, int screenHeight);
+	void ReloadGame(std::vector<char>& board);
+	void DrawGame(std::vector<char>& graphXO);
+	void UpdateGame(std::vector<char>& graphXO);
+	void CheckUp(std::vector<char>& graphXO);
+	void CheckForPlace(std::vector<char>& graphXO);
 private:
-
-	Vector2 GetClickPosition() const { return GetMousePosition(); }
-	Player* player;
-	Enemy* enemy;
-	Character* character;
+	 int cellWidth, cellHeight, screenWidth,screenHeight;
+	Texture2D playerX, enemyX, playerXWin, enemyXWin;
+	Rectangle playerRect;
+	std::unique_ptr<Player> player;
+	std::unique_ptr<Enemy> enemy;
+	std::unique_ptr<Character> character;
 	bool gameOver;
 	bool playerHasPlayed;
 	bool aiHasPlayed;
