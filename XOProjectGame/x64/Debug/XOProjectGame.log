@@ -1,0 +1,4 @@
+﻿  GameManager.cpp
+C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\GameManager.cpp(63,29): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\GameManager.cpp(64,29): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  XOProjectGame.vcxproj -> C:\Users\yehia\source\repos\XOProjectGame\x64\Debug\XOProjectGame.exe
