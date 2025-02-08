@@ -1,5 +1,4 @@
-#ifndef CHARACTER_H
-#define CHARACTER_H
+#pragma once
 #include <algorithm>
 #include <array>
 #include "raylib.h"
@@ -7,11 +6,16 @@
 #include <string>
 #include <utility>
 #include <map>
+#include "SoundPlayer.h"
+
+
 class Character
 {
 public:
 	
 	Character();
+	
+	SoundPlayer& GetSound()  { return sound; };
 	std::vector<char> GetGraphXorO() const { return graphXO; }
 	void DrawX(int x, int y, int cellWidth, int cellHeight, Texture2D playerX,Rectangle playerRect);
 	void DrawWinX(int x, int y, int cellWidth, int cellHeight, Texture2D playerX, Rectangle playerRect);
@@ -21,11 +25,10 @@ public:
 	 static std::vector<std::pair<std::array<int, 4>, std::array<char, 4>>>count;
 protected:
 	int screenWidth, screenHeight;
-
 	std::string XorO;
 	std::vector<char> graphXO = std::vector<char>(16, ' ');
+private:
+	SoundPlayer sound;
 
-	
 };
 
-#endif

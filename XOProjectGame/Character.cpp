@@ -1,6 +1,6 @@
 #include "Character.h"
 #include <iostream>
-
+#include "SoundPlayer.h" 
 std::vector<std::pair<std::array<int, 4>, std::array<char, 4>>> Character::count(4);
 
 Character::Character() : screenHeight(0), screenWidth(0) {
@@ -45,10 +45,9 @@ bool Character::isFull(std::vector<char>& board)
     return true;
 }
 
-
 bool Character::checkWin(std::vector<char>& board, char player,bool isPlayer,Rectangle& playerRect)
 {
-    
+       
     for (int row = 0; row < 4; row++) {
         if (board[row * 4] == player && board[row * 4 + 1] == player &&
             board[row * 4 + 2] == player && board[row * 4 + 3] == player) {
@@ -62,15 +61,15 @@ bool Character::checkWin(std::vector<char>& board, char player,bool isPlayer,Rec
                     board.at(row * 4 + 2) = ' ';
                     board.at(row * 4 + 3) = ' ';
                 }
-                else {
                     playerRect = {
                         0,
                         static_cast<float>(row),
-                        1,
-                        4
+                         static_cast<float>(GetScreenWidth()),
+                        static_cast<float>(GetScreenHeight()/4)
                     };
-                }
-                
+                    Texture2D playerX = player == 'X' ? LoadTexture("../XOProjectGame/XWin.png") : LoadTexture("../XOProjectGame/OWin.png");
+                    DrawWinX(0, row , GetScreenWidth()/4, GetScreenHeight()/4,playerX , playerRect);
+                    sound.PlaySoundToPlay("../XOProjectGame/Win.wav");
             }
             return true;
         }
@@ -89,9 +88,13 @@ bool Character::checkWin(std::vector<char>& board, char player,bool isPlayer,Rec
                     board.at(col + 8) = ' ';
                     board.at(col + 12) = ' ';
                 }
-                else {
-                    playerRect = { static_cast<float>(col), 0, 1, 4 };
-                }
+                playerRect = {
+                   static_cast<float>(col * GetScreenWidth() / 4), 0, 
+                   static_cast<float>(GetScreenWidth() / 4), static_cast<float>(GetScreenHeight())
+                };
+                    Texture2D playerX = player == 'X' ? LoadTexture("../XOProjectGame/XWin.png") : LoadTexture("../XOProjectGame/OWin.png");
+                    DrawWinX(col , 0, GetScreenWidth() / 4, GetScreenHeight() / 4, playerX, playerRect);
+                    sound.PlaySoundToPlay("../XOProjectGame/Win.wav");
             }
             return true;
         }
@@ -108,9 +111,10 @@ bool Character::checkWin(std::vector<char>& board, char player,bool isPlayer,Rec
                 board.at(10) = ' ';
                 board.at(15) =' ';
             }
-            else {
-                playerRect = { 0, 0, 4, 4 };
-            }
+                playerRect = { 0, 0, static_cast<float>(GetScreenWidth()), static_cast<float>(GetScreenHeight()) };
+                Texture2D playerX = player == 'X' ? LoadTexture("../XOProjectGame/XWin.png") : LoadTexture("../XOProjectGame/OWin.png");
+                DrawWinX(0,0, GetScreenWidth() / 4, GetScreenHeight() / 4, playerX, playerRect);
+                sound.PlaySoundToPlay("../XOProjectGame/Win.wav");
             
         }
         return true;
@@ -126,13 +130,13 @@ bool Character::checkWin(std::vector<char>& board, char player,bool isPlayer,Rec
                 board.at(9) = ' ';
                 board.at(12) = ' ';
             }
-            else {
-                playerRect = { 3, 0, -4, 4 };
-            }
+                playerRect = { 0, 0, -static_cast<float>(GetScreenWidth()), static_cast<float>(GetScreenHeight()) };
+                Texture2D playerX = player == 'X' ? LoadTexture("../XOProjectGame/XWin.png") : LoadTexture("../XOProjectGame/OWin.png");
+                DrawWinX(3, 0, GetScreenWidth() / 4, GetScreenHeight() / 4, playerX, playerRect);
+                sound.PlaySoundToPlay("../XOProjectGame/Win.wav");
         }
         return true;
     }
-
     return false;
 }
 

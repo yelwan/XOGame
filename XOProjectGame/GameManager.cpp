@@ -1,8 +1,7 @@
 ﻿    #include "GameManager.h"
-
+    #include "SoundPlayer.h"
     GameManager::GameManager() : gameOver(false), aiHasPlayed(false), playerHasPlayed(false), cellWidth(0), cellHeight(0),screenWidth(0),screenHeight(0)
     {
-        playerRect = { 0.0f,0.0f,0.0f,0.0f };
         player = std::make_unique<Player>();
         enemy = std::make_unique<Enemy>();
         character = std::make_unique<Character>();
@@ -22,7 +21,8 @@
          this->screenHeight = screenHeight;
          cellWidth = screenWidth / 4;
          cellHeight = screenHeight / 4;
-        SetTargetFPS(60);
+        SetTargetFPS(45);
+        InitAudioDevice();
         UpdateGame(graphXO);  
     }
 
@@ -78,9 +78,14 @@
         while (!WindowShouldClose())
         {
             playerHasPlayed = aiHasPlayed = false;
-            DrawGame(graphXO);
-                  
+            DrawGame(graphXO);      
+            
         }
+        CloseAudioDevice();
+        UnloadTexture(playerX);
+        UnloadTexture(enemyX);
+        UnloadTexture(playerXWin);
+        UnloadTexture(enemyXWin);
     }
 
     void GameManager::CheckUp(std::vector<char>& graphXO)
@@ -89,14 +94,7 @@
             player->checkWin(graphXO, 'X', true, playerRect);
             player->checkWin(graphXO, 'O', true, playerRect);
             int xWins = 0, oWins = 0;
-            for (int i = 0; i < graphXO.size(); i++) {
-                if (graphXO[i] == 'X') {
-                    player->DrawWinX(i % 4, i / 4, cellWidth, cellHeight, playerXWin, playerRect);
-                }
-                else if (graphXO[i] == 'O') {
-                    player->DrawWinX(i % 4, i / 4, cellWidth, cellHeight, enemyXWin, playerRect);
-                }
-            }
+
             for (int i = 0; i < 4; i++) {
                 if (Character::count[i].second[i] == 'X') {
                     xWins += Character::count[i].first[i];
@@ -104,10 +102,11 @@
                 else if (Character::count[i].second[i] == 'O') {
                     oWins += Character::count[i].first[i];
                 }
-
             }
 
-            if (xWins >= 3 || oWins >= 3) {
+            if (xWins > 3 || oWins > 3) {
+                player->checkWin(graphXO, 'X', true, playerRect);
+                player->checkWin(graphXO, 'O', true, playerRect);
                 CloseWindow();
             }
         }

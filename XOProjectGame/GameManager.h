@@ -21,7 +21,7 @@ public:
 	void CheckUp(std::vector<char>& graphXO);
 	void CheckForPlace(std::vector<char>& graphXO);
 private:
-	 int cellWidth, cellHeight, screenWidth,screenHeight;
+	int cellWidth, cellHeight, screenWidth,screenHeight;
 	Texture2D playerX, enemyX, playerXWin, enemyXWin;
 	Rectangle playerRect;
 	std::unique_ptr<Player> player;

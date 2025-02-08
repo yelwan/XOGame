@@ -4,6 +4,8 @@
 #include <string>
 #include <unordered_map>
 
+class Character;
+
 class Enemy : public Character
 {
 public:
