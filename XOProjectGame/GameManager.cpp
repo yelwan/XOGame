@@ -31,12 +31,14 @@
         for (int i = 0; i < board.size(); i++) {
             board[i] = ' ';
         }
+        player->ClearVectors();
+        enemy->ClearVectors();
     }
 
     void GameManager::DrawGame(std::vector<char>& graphXO)
     {
       
-       
+        std::vector<std::pair<int, int>> boardInitial = character->GetInitial();
         BeginDrawing();
         ClearBackground(RAYWHITE);
 
@@ -52,19 +54,14 @@
             int col = i % 4;
 
 
-            playerRect = {
-               static_cast<float>(col * cellWidth),
-               static_cast<float>(row * cellHeight),
-               static_cast<float>(cellWidth),
-               static_cast<float>(cellHeight)
-            };
+            
 
 
             if (graphXO[i] == 'X') {
-                player->DrawX(col, row, cellWidth, cellHeight, playerX, playerRect);
+                player->DrawX(col * cellWidth, row * cellHeight, cellWidth, cellHeight,i, playerX, playerRect);
             }
             if (graphXO[i] == 'O') {
-                enemy->DrawO(col, row, cellWidth, cellHeight, enemyX, playerRect);
+                enemy->DrawO(col * cellWidth, row * cellHeight, cellWidth, cellHeight,i, enemyX, playerRect);
             }
         }
 
