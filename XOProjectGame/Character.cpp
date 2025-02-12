@@ -161,7 +161,7 @@ bool Character::checkWin(std::vector<char>& board, char player,bool isPlayer,Rec
             if (count[3].first[3] < 4) {
                 count[3].first[3]++;
                 count[3].second[3] = player;
-                int indices[] = { 3, 6, 9, 12 };
+                int indices[4] = { 3, 6, 9, 12 };
                 for (int i = 0; i < 4; i++) {
                     board.at(indices[i]) = ' ';
                     boardInitial[indices[i]].first = boardInitial[indices[i]].second = 0;

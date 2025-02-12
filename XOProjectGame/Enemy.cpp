@@ -61,9 +61,8 @@ int Enemy::MinMax(std::vector<char>& board, int depth, bool isMaximising, char X
 
                 board[i] = ' ';
 
-
-                    bestScore = std::max(bestScore, moveScore);
-                    alpha = std::max(alpha, bestScore);
+                bestScore = std::max(bestScore, moveScore);
+                alpha = std::max(alpha, bestScore);
                 if (beta <= alpha) {
                     break;
                 }
