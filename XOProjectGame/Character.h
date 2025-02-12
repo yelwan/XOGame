@@ -17,7 +17,6 @@ public:
 	
 	SoundPlayer& GetSound()  { return sound; };
 	std::vector<char> GetGraphXorO() const { return graphXO; }
-	std::vector<std::pair<int, int>> GetInitial() const { return boardInitial; }
 	void DrawX(int x, int y, int cellWidth, int cellHeight,int index ,Texture2D playerX,Rectangle playerRect);
 	void DrawWinX(int x, int y, int cellWidth, int cellHeight, Texture2D playerX, Rectangle playerRect);
 	void DrawO(int x, int y, int cellWidth, int cellHeight,int index, Texture2D playerX, Rectangle playerRect);

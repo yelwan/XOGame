@@ -39,9 +39,9 @@ C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.3380
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\utility(247,54): warning C4244:             _Ty2=int
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\utility(247,54): warning C4244:         ]
   GameManager.cpp
+C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\GameManager.cpp(118,21): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\GameManager.cpp(119,21): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\GameManager.cpp(120,21): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  main.cpp
   Player.cpp
+  main.cpp
   Generating Code...
   XOProjectGame.vcxproj -> C:\Users\yehia\source\repos\XOProjectGame\x64\Debug\XOProjectGame.exe

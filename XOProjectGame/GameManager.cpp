@@ -38,7 +38,6 @@
     void GameManager::DrawGame(std::vector<char>& graphXO)
     {
       
-        std::vector<std::pair<int, int>> boardInitial = character->GetInitial();
         BeginDrawing();
         ClearBackground(RAYWHITE);
 
