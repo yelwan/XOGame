@@ -77,11 +77,7 @@
             DrawGame(graphXO);      
             
         }
-        CloseAudioDevice();
-        UnloadTexture(playerX);
-        UnloadTexture(enemyX);
-        UnloadTexture(playerXWin);
-        UnloadTexture(enemyXWin);
+        CloseGame();
     }
 
     void GameManager::CheckUp(std::vector<char>& graphXO)
@@ -129,4 +125,13 @@
             enemy->PlaceXOPublic('O', {0,0}, graphXO, 'X');
             aiHasPlayed = true;
         }
+    }
+
+    void GameManager::CloseGame()
+    {
+        CloseAudioDevice();
+        UnloadTexture(playerX);
+        UnloadTexture(enemyX);
+        UnloadTexture(playerXWin);
+        UnloadTexture(enemyXWin);
     }

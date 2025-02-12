@@ -20,6 +20,7 @@ public:
 	void UpdateGame(std::vector<char>& graphXO);
 	void CheckUp(std::vector<char>& graphXO);
 	void CheckForPlace(std::vector<char>& graphXO);
+	void CloseGame();
 private:
 	int cellWidth, cellHeight, screenWidth,screenHeight;
 	Texture2D playerX, enemyX, playerXWin, enemyXWin;
