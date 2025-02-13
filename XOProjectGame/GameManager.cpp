@@ -87,7 +87,7 @@
         ClearBackground(RAYWHITE);
         int _score = Character::score;
         DrawText("Press: 1: to RePlay, esc: to exit", 20, 40, 45, BLACK);
-        DrawText(TextFormat(_score < 3 ? "You Lost! Scoring:" : "You Won You scored: %d", _score), 40, 100, 50,RED);
+        DrawText(TextFormat(_score < 3 ? "You Lost! Scoring: %d" : "You Won You scored: %d", _score), 40, 100, 50,RED);
       
         if (IsKeyPressed(KEY_ONE)) state = PLAYING;
         EndDrawing();
