@@ -2,7 +2,7 @@
 
 int main() 
 {
-	 GameManager* gameManager = new GameManager();
+	std::unique_ptr<GameManager> gameManager = std::make_unique<GameManager>();
 
 	 int screenWidth = 800;
 	 int screenHeight = 600;

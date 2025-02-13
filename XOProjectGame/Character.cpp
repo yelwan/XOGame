@@ -2,6 +2,7 @@
 #include <iostream>
 #include "SoundPlayer.h" 
 std::vector<std::pair<std::array<int, 4>, std::array<char, 4>>> Character::count(4);
+int Character::score = 0;
 
 Character::Character() : screenHeight(0), screenWidth(0), speed(5) {
     for (int i = 0; i < 4; i++) {
@@ -103,6 +104,7 @@ bool Character::checkWin(std::vector<char>& board, char player,bool isPlayer,Rec
                     Texture2D playerX = player == 'X' ? LoadTexture("../XOProjectGame/XWin.png") : LoadTexture("../XOProjectGame/OWin.png");
                     DrawWinX(0, row , GetScreenWidth()/4, GetScreenHeight()/4,playerX , playerRect);
                     sound.PlaySoundToPlay("../XOProjectGame/Win.wav");
+                    if (player == 'X') score++;
             }
             return true;
         }
@@ -130,6 +132,7 @@ bool Character::checkWin(std::vector<char>& board, char player,bool isPlayer,Rec
                     Texture2D playerX = player == 'X' ? LoadTexture("../XOProjectGame/XWin.png") : LoadTexture("../XOProjectGame/OWin.png");
                     DrawWinX(col , 0, GetScreenWidth() / 4, GetScreenHeight() / 4, playerX, playerRect);
                     sound.PlaySoundToPlay("../XOProjectGame/Win.wav");
+                    if (player == 'X') score++;
             }
             return true;
         }
@@ -151,6 +154,7 @@ bool Character::checkWin(std::vector<char>& board, char player,bool isPlayer,Rec
                 Texture2D playerX = player == 'X' ? LoadTexture("../XOProjectGame/XWin.png") : LoadTexture("../XOProjectGame/OWin.png");
                 DrawWinX(0,0, GetScreenWidth() / 4, GetScreenHeight() / 4, playerX, playerRect);
                 sound.PlaySoundToPlay("../XOProjectGame/Win.wav");
+                if (player == 'X') score++;
             
         }
         return true;
@@ -173,6 +177,7 @@ bool Character::checkWin(std::vector<char>& board, char player,bool isPlayer,Rec
                 Texture2D playerX = player == 'X' ? LoadTexture("../XOProjectGame/XWin.png") : LoadTexture("../XOProjectGame/OWin.png");
                 DrawWinX(3, 0, GetScreenWidth() / 4, GetScreenHeight() / 4, playerX, playerRect);
                 sound.PlaySoundToPlay("../XOProjectGame/Win.wav");
+                if (player == 'X') score++;
         }
         return true;
     }

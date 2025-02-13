@@ -23,6 +23,7 @@ public:
 	bool isFull(std::vector<char>& board);
 	bool checkWin( std::vector<char>& board, char player,bool isPlayer, Rectangle& playerRect);
 	 static std::vector<std::pair<std::array<int, 4>, std::array<char, 4>>>count;
+	 static int score;
 	  void ClearVectors();
 protected:
 	int screenWidth, screenHeight;

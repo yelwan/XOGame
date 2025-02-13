@@ -1,10 +1,10 @@
 ﻿    #include "GameManager.h"
     #include "SoundPlayer.h"
+
     GameManager::GameManager() : gameOver(false), aiHasPlayed(false), playerHasPlayed(false), cellWidth(0), cellHeight(0),screenWidth(0),screenHeight(0)
     {
         player = std::make_unique<Player>();
         enemy = std::make_unique<Enemy>();
-        character = std::make_unique<Character>();
         
     }
 
@@ -12,7 +12,6 @@
 
     void GameManager::BeginGameInit(int screenWidth, int screenHeight)
     {       
-        std::vector<char> graphXO = character->GetGraphXorO();
         playerX = LoadTexture("../XOProjectGame/X.png");
         enemyX = LoadTexture("../XOProjectGame/O.png");
         playerXWin = LoadTexture("../XOProjectGame/XWin.png");
@@ -35,9 +34,9 @@
         enemy->ClearVectors();
     }
 
-    void GameManager::DrawGame(std::vector<char>& graphXO)
+    void GameManager::DrawGame(std::vector<char>& graphXO,GameState& state)
     {
-      
+        if (state != PLAYING) return;
         BeginDrawing();
         ClearBackground(RAYWHITE);
 
@@ -69,13 +68,40 @@
         EndDrawing();
     }
 
+    void GameManager::DrawIntro(GameState& state)
+    {
+      
+        if (state != WAITING_FOR_INPUT) return;
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+        DrawText("Press: 1: to Play, esc: to exit",20,40,50,BLACK);
+        if (IsKeyPressed(KEY_ONE)) state = PLAYING;
+        EndDrawing();
+    }
+
+    void GameManager::DrawFinish(GameState& state)
+    {
+        if (state != GAME_OVER) return;
+        ReloadGame(graphXO);
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+        int _score = Character::score;
+        DrawText("Press: 1: to RePlay, esc: to exit", 20, 40, 45, BLACK);
+        DrawText(TextFormat(_score < 3 ? "You Lost! Scoring:" : "You Won You scored: %d", _score), 40, 100, 50,RED);
+      
+        if (IsKeyPressed(KEY_ONE)) state = PLAYING;
+        EndDrawing();
+    }
+
     void GameManager::UpdateGame(std::vector<char>& graphXO)
     {
+        state = WAITING_FOR_INPUT;
         while (!WindowShouldClose())
         {
+            DrawIntro(state);
             playerHasPlayed = aiHasPlayed = false;
-            DrawGame(graphXO);      
-            
+            DrawGame(graphXO,state);      
+            DrawFinish(state);
         }
         CloseGame();
     }
@@ -99,7 +125,8 @@
             if (xWins > 3 || oWins > 3) {
                 player->checkWin(graphXO, 'X', true, playerRect);
                 player->checkWin(graphXO, 'O', true, playerRect);
-                CloseWindow();
+                state = GAME_OVER;
+                xWins = oWins = 0;
             }
         }
         if (player->isFull(graphXO)) {

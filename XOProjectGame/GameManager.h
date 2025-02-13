@@ -9,14 +9,21 @@
 #include <string>
 
 class Enemy;
-
+enum GameState {
+	WAITING_FOR_INPUT,
+	PLAYING,
+	DEFAULT,
+	GAME_OVER
+};
 class GameManager 
 {
 public:
 	GameManager();
 	void BeginGameInit(int screenWidth, int screenHeight);
 	void ReloadGame(std::vector<char>& board);
-	void DrawGame(std::vector<char>& graphXO);
+	void DrawGame(std::vector<char>& graphXO,GameState& state);
+	void DrawIntro(GameState& state);
+	void DrawFinish(GameState& state);
 	void UpdateGame(std::vector<char>& graphXO);
 	void CheckUp(std::vector<char>& graphXO);
 	void CheckForPlace(std::vector<char>& graphXO);
@@ -27,9 +34,10 @@ private:
 	Rectangle playerRect;
 	std::unique_ptr<Player> player;
 	std::unique_ptr<Enemy> enemy;
-	std::unique_ptr<Character> character;
+	std::vector<char> graphXO = std::vector<char>(16, ' ');
 	bool gameOver;
 	bool playerHasPlayed;
 	bool aiHasPlayed;
+	GameState state;
 };
 
