@@ -2,9 +2,8 @@
 #include <iostream>
 #include "SoundPlayer.h" 
 std::vector<std::pair<std::array<int, 4>, std::array<char, 4>>> Character::count(4);
-int Character::score = 0;
-
-Character::Character() : screenHeight(0), screenWidth(0), speed(5) {
+int Character::scoreGetter = 0;
+Character::Character() : screenHeight(0), screenWidth(0), speed(5), score(0) {
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
             count[i].first[j] = 0;
@@ -84,6 +83,7 @@ bool Character::checkWin(std::vector<char>& board, char player,bool isPlayer,Rec
     for (int row = 0; row < 4; row++) {
         if (board[row * 4] == player && board[row * 4 + 1] == player &&
             board[row * 4 + 2] == player && board[row * 4 + 3] == player) {
+            
             if (isPlayer) {
                 
                 if (count[0].first[0] < 4) {
@@ -104,7 +104,10 @@ bool Character::checkWin(std::vector<char>& board, char player,bool isPlayer,Rec
                     Texture2D playerX = player == 'X' ? LoadTexture("../XOProjectGame/XWin.png") : LoadTexture("../XOProjectGame/OWin.png");
                     DrawWinX(0, row , GetScreenWidth()/4, GetScreenHeight()/4,playerX , playerRect);
                     sound.PlaySoundToPlay("../XOProjectGame/Win.wav");
-                    if (player == 'X') score++;
+                    if (player == 'X') {
+                        score++;
+                        scoreGetter = score;
+                    }
             }
             return true;
         }
@@ -113,6 +116,7 @@ bool Character::checkWin(std::vector<char>& board, char player,bool isPlayer,Rec
     for (int col = 0; col < 4; col++) {
         if (board[col] == player && board[col + 4] == player &&
             board[col + 8] == player && board[col + 12] == player) {
+           
             if ( isPlayer) {
                 
                 if (count[1].first[1] < 4) {
@@ -132,7 +136,10 @@ bool Character::checkWin(std::vector<char>& board, char player,bool isPlayer,Rec
                     Texture2D playerX = player == 'X' ? LoadTexture("../XOProjectGame/XWin.png") : LoadTexture("../XOProjectGame/OWin.png");
                     DrawWinX(col , 0, GetScreenWidth() / 4, GetScreenHeight() / 4, playerX, playerRect);
                     sound.PlaySoundToPlay("../XOProjectGame/Win.wav");
-                    if (player == 'X') score++;
+                    if (player == 'X') {
+                        score++;
+                        scoreGetter = score;
+                    }
             }
             return true;
         }
@@ -154,8 +161,10 @@ bool Character::checkWin(std::vector<char>& board, char player,bool isPlayer,Rec
                 Texture2D playerX = player == 'X' ? LoadTexture("../XOProjectGame/XWin.png") : LoadTexture("../XOProjectGame/OWin.png");
                 DrawWinX(0,0, GetScreenWidth() / 4, GetScreenHeight() / 4, playerX, playerRect);
                 sound.PlaySoundToPlay("../XOProjectGame/Win.wav");
-                if (player == 'X') score++;
-            
+                if (player == 'X') {
+                    score++;
+                    scoreGetter = score;
+                }
         }
         return true;
     }
@@ -177,7 +186,10 @@ bool Character::checkWin(std::vector<char>& board, char player,bool isPlayer,Rec
                 Texture2D playerX = player == 'X' ? LoadTexture("../XOProjectGame/XWin.png") : LoadTexture("../XOProjectGame/OWin.png");
                 DrawWinX(3, 0, GetScreenWidth() / 4, GetScreenHeight() / 4, playerX, playerRect);
                 sound.PlaySoundToPlay("../XOProjectGame/Win.wav");
-                if (player == 'X') score++;
+                if (player == 'X') {
+                    score++;
+                    scoreGetter = score;
+                }
         }
         return true;
     }
@@ -191,10 +203,16 @@ void Character::ClearVectors()
         boardO[i].first = boardO[i].second = 0;
         
     }
+    
+}
+
+void Character::ClearCountVector()
+{
     for (int i = 0; i < 4; i++) {
         count[i].first[i] = 0;
         count[i].second[i] = ' ';
     }
+    if (score > 3)  score = 0;
 }
 
 

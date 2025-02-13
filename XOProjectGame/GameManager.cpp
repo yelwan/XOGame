@@ -32,6 +32,7 @@
         }
         player->ClearVectors();
         enemy->ClearVectors();
+        
     }
 
     void GameManager::DrawGame(std::vector<char>& graphXO,GameState& state)
@@ -85,12 +86,13 @@
         ReloadGame(graphXO);
         BeginDrawing();
         ClearBackground(RAYWHITE);
-        int _score = Character::score;
+        int _score = Character::scoreGetter;
+        if (_score > 3) _score %= 3;
         DrawText("Press: 1: to RePlay, esc: to exit", 20, 40, 45, BLACK);
         DrawText(TextFormat(_score < 3 ? "You Lost! Scoring: %d" : "You Won You scored: %d", _score), 40, 100, 50,RED);
-        Character::score = 0;
         if (IsKeyPressed(KEY_ONE)) state = PLAYING;
         EndDrawing();
+        
     }
 
     void GameManager::UpdateGame(std::vector<char>& graphXO)
@@ -127,6 +129,8 @@
                 player->checkWin(graphXO, 'O', true, playerRect);
                 state = GAME_OVER;
                 xWins = oWins = 0;
+                player->ClearCountVector();
+                enemy->ClearCountVector();
             }
         }
         if (player->isFull(graphXO)) {
