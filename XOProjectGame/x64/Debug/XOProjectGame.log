@@ -1,4 +1,22 @@
-﻿  GameManager.cpp
-C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\GameManager.cpp(141,21): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\GameManager.cpp(142,21): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+﻿  Character.cpp
+C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\Character.cpp(25,92): warning C4244: '+=': conversion from 'float' to '_Ty1', possible loss of data
+C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\Character.cpp(25,92): warning C4244:         with
+C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\Character.cpp(25,92): warning C4244:         [
+C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\Character.cpp(25,92): warning C4244:             _Ty1=int
+C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\Character.cpp(25,92): warning C4244:         ]
+C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\Character.cpp(26,95): warning C4244: '+=': conversion from 'float' to '_Ty2', possible loss of data
+C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\Character.cpp(26,95): warning C4244:         with
+C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\Character.cpp(26,95): warning C4244:         [
+C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\Character.cpp(26,95): warning C4244:             _Ty2=int
+C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\Character.cpp(26,95): warning C4244:         ]
+C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\Character.cpp(56,80): warning C4244: '+=': conversion from 'float' to '_Ty1', possible loss of data
+C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\Character.cpp(56,80): warning C4244:         with
+C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\Character.cpp(56,80): warning C4244:         [
+C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\Character.cpp(56,80): warning C4244:             _Ty1=int
+C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\Character.cpp(56,80): warning C4244:         ]
+C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\Character.cpp(57,83): warning C4244: '+=': conversion from 'float' to '_Ty2', possible loss of data
+C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\Character.cpp(57,83): warning C4244:         with
+C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\Character.cpp(57,83): warning C4244:         [
+C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\Character.cpp(57,83): warning C4244:             _Ty2=int
+C:\Users\yehia\source\repos\XOProjectGame\XOProjectGame\Character.cpp(57,83): warning C4244:         ]
   XOProjectGame.vcxproj -> C:\Users\yehia\source\repos\XOProjectGame\x64\Debug\XOProjectGame.exe

@@ -189,6 +189,11 @@ void Character::ClearVectors()
     for (int i = 0; i < 16; i++) {
         boardInitial[i].first = boardInitial[i].second = 0;
         boardO[i].first = boardO[i].second = 0;
+        
+    }
+    for (int i = 0; i < 4; i++) {
+        count[i].first[i] = 0;
+        count[i].second[i] = ' ';
     }
 }
 
